@@ -600,7 +600,7 @@ input:checked + .switch:before {
     border-radius: 0 0 5px 5px;
     padding: 10px 20px 10px 10px;
     background: #fff;
-    position: relative;
+    position:absolute;
     display: block;
 }
 
@@ -776,6 +776,7 @@ input:checked + .switch:before {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden !important;
+    
 }
 
 .show-fav .speakers-list {
