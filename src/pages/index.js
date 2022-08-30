@@ -1,8 +1,8 @@
 import "./css/local-styles.css";
-import Speakers from "../components/Speakers";
+import App from "../components/App";
 
 const IndexPage = () => {
-  return <Speakers />;
+  return <App />;
 };
 
 export default IndexPage;
