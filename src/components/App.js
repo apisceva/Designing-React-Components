@@ -2,7 +2,6 @@ import "../pages/css/local-styles.css";
 import Header from "./Header";
 import { useState } from "react";
 import Speakers from "./Speakers";
-import { data } from "../SpeakerData";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -14,7 +13,7 @@ function App() {
       }
     >
       <Header theme={theme} />
-      <Speakers data={data} theme={theme} setTheme={setTheme} />
+      <Speakers theme={theme} setTheme={setTheme} />
     </div>
   );
 }
