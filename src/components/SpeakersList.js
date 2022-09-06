@@ -1,12 +1,17 @@
 import Speaker from "./Speaker";
 import ReactPlaceholder from "react-placeholder";
-import useRequestSpeakers from "../hooks/useRequestSpeakers";
+import useRequestDelay, { REQUEST_STATUS } from "../hooks/useRequestDelay";
+import { data } from "../SpeakerData";
 
 function SpeakersList({ showSessions }) {
-  const { speakersData, isLoading, hasErrored, error, onFavoriteToggle } =
-    useRequestSpeakers(2000);
+  const {
+    data: SpeakerData,
+    requestStatus,
+    error,
+    updateRecord,
+  } = useRequestDelay(2000, data);
 
-  if (hasErrored === true) {
+  if (requestStatus === REQUEST_STATUS.FAILURE) {
     return (
       <div className="text-danger">
         ERROR: <b>loading Speaker Data Failed {error}</b>
@@ -14,25 +19,29 @@ function SpeakersList({ showSessions }) {
     );
   }
 
-  //if (isLoading === true) return <div>Loading...</div>;
-
   return (
     <div className="container speakers-list">
       <ReactPlaceholder
         type="media"
         rows={15}
         className="speakerslist-placeholder"
-        ready={isLoading === false}
+        ready={requestStatus === REQUEST_STATUS.SUCCESS}
       >
         <div className="row">
-          {speakersData.map(function (speaker) {
+          {data.map(function (speaker) {
             return (
               <Speaker
                 key={speaker.id}
                 speaker={speaker}
                 showSessions={showSessions}
-                onFavoriteToggle={() => {
-                  onFavoriteToggle(speaker.id);
+                onFavoriteToggle={(doneCallback) => {
+                  updateRecord(
+                    {
+                      ...speaker,
+                      favorite: !speaker.favorite,
+                    },
+                    doneCallback
+                  );
                 }}
               />
             );
