@@ -11,6 +11,8 @@ function SpeakersList({ showSessions }) {
     requestStatus,
     error,
     updateRecord,
+    insertRecord,
+    deleteRecord,
   } = useRequestDelay(2000, data);
 
   const { searchQuery, eventYear } = useContext(SpeakerFilterContext);
@@ -50,6 +52,8 @@ function SpeakersList({ showSessions }) {
                   key={speaker.id}
                   speaker={speaker}
                   updateRecord={updateRecord}
+                  insertRecord={insertRecord}
+                  deleteRecord={deleteRecord}
                 />
               );
             })}
