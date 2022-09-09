@@ -8,8 +8,9 @@ function SpeakerAdd({ eventYear, insertRecord }) {
           const firstLastArray = firstLast.split(" ");
           insertRecord({
             id: "99999",
-            first: firstLastArray,
-            last: firstLastArray,
+            first: firstLastArray[0],
+            last: firstLastArray[1],
+            bio: "Bio not entered yet",
             sessions: [
               {
                 id: "88888",
