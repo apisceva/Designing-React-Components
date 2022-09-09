@@ -44,7 +44,7 @@ function useRequestRest() {
           doneCallback();
         }
       } catch (error) {
-        console.log("error thrown inside delayFunction");
+        console.log("error thrown inside delayFunction", error);
         if (doneCallback) {
           doneCallback();
         }
@@ -53,6 +53,7 @@ function useRequestRest() {
     }
     delayFunction();
   }
+
   function insertRecord(record, doneCallback) {
     const [originalRecords] = [...data];
     const newRecords = [record, ...data];
@@ -60,12 +61,12 @@ function useRequestRest() {
     async function delayFunction() {
       try {
         setData(newRecords);
-        await delay(delayTime);
+        await axios.post(`${restUrl}/99999`, record);
         if (doneCallback) {
           doneCallback();
         }
       } catch (error) {
-        console.log("error thrown inside delayFunction");
+        console.log("error thrown inside delayFunction", error);
         if (doneCallback) {
           doneCallback();
         }
@@ -84,12 +85,12 @@ function useRequestRest() {
     async function delayFunction() {
       try {
         setData(newRecords);
-        await delay(delayTime);
+        await axios.delete(`${restUrl}/${record.id}`, record);
         if (doneCallback) {
           doneCallback();
         }
       } catch (error) {
-        console.log("error thrown inside delayFunction");
+        console.log("error thrown inside delayFunction", error);
         if (doneCallback) {
           doneCallback();
         }
